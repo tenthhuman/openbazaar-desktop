@@ -125,8 +125,6 @@ export default class extends Model {
           try {
             if (nestedData) nestedInstance.set(nestedData);
           } catch( e ) {
-            console.log('sizzle');
-            window.sizzle = e;
             console.warn( `BaseModel expected ${ nestedKey } slot to be an instance of ${ NestedClass.name }. It wasn't.` );
           }
           try {
