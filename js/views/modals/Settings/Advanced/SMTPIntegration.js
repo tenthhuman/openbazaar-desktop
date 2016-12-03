@@ -18,8 +18,8 @@ export default class extends baseVw {
     // this.settings = app.settings.clone( );
     loadTemplate('modals/settings/advanced/smtpintegration.html', (t) => {
       this.$el.html(t({
-        errors : {},
-        ...this.settings.toJSON()
+        errors : this.model.validationError || {},
+        ...this.model.toJSON(),
       }));
 
       this.$formFields = this.$('select[name], input[name]');

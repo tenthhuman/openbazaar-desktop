@@ -39,7 +39,7 @@ export default class Advanced extends baseVw {
       model : new ServerSettings( ) 
     } );
     this.smtpIntegrationSettings = this.createChild( SMTPIntegration, { 
-      model : new SMTPIntegrationSettings( ) 
+      model : this.settings.get('smtpIntegrationSettings'),
     } );
   }
 
@@ -57,12 +57,17 @@ export default class Advanced extends baseVw {
   save() {
     const formData = this.getFormData();
 
+    console.log(JSON.stringify(formData));
+
     this.settings.set(formData);
     // app.settings.set( this.settings.toJSON( ) );
 
-    const save = this.settings.save( );
-    this.trigger('saving');
+    const save = this.settings.save();
+    
+    // this.trigger('saving');
+
     if (!save) {
+      console.log('ive failed');
       // client side validation failed
       this.trigger('saveComplete', true);
     } else {
@@ -71,14 +76,18 @@ export default class Advanced extends baseVw {
       save.
         done(() => { 
           this.trigger('saveComplete');
-          this.render();
+          // this.render();
         })
         .fail((...args) => {
           this.trigger('saveComplete', false, true,
             args[0] && args[0].responseJSON && args[0].responseJSON.reason || '');
-          this.render();
+          // this.render();
         });
     }
+
+    this.render();
+    const $firstErr = this.$('.errorList:first');
+    if ($firstErr.length) $firstErr[0].scrollIntoViewIfNeeded();
   }
 
   render() {

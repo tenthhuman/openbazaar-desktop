@@ -51,7 +51,9 @@
         <%= ob.polyT('settings.smtpUserName') %>
       </label>
     </div>
+    <% console.log('hello'); window.hello = ob %>
     <div class="col9">
+      <% if (ob.errors.smtpUserName) print(ob.formErrorTmpl({ errors: ob.errors.smtpUserName })) %>
       <input class="clrBr" 
         required        
         type="text"

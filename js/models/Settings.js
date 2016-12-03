@@ -27,7 +27,7 @@ export default class extends BaseModel {
     return app.getServerUrl('ob/settings/');
   }
 
-  nested() {
+  get nested() {
     return {
       shippingAddresses: ShippingAddresses,
       appearanceSettings: AppearanceSettings,
@@ -63,6 +63,14 @@ export default class extends BaseModel {
   // fromAPIFormatJSON( response ) {
   //   return SettingsAPIAdaptor.convertAPIToModelFormat( response );
   // }
+
+  validate() {
+    const errObj = this.mergeInNestedErrors({});
+
+    if (Object.keys(errObj).length) return errObj;
+
+    return undefined;
+  }
 
   sync(method, model, options) {
     if (method === 'create' && typeof options.type === 'undefined') {
