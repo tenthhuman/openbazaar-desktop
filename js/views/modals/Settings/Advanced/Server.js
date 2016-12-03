@@ -15,11 +15,11 @@ export default class extends baseVw {
   }
 
   render( ) {
-    this.settings = app.settings.clone( );
+    // this.settings = app.settings.clone( );
     loadTemplate('modals/settings/advanced/server.html', (t) => {
       this.$el.html(t({
         errors : {},
-        ...this.settings.toModelFormatJSON( ).serverSettings
+        ...this.settings.toJSON().serverSettings
       }));
 
       this.$formFields = this.$('select[name], input[name]');

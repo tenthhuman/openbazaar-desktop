@@ -27,41 +27,49 @@ export default class extends BaseModel {
     return app.getServerUrl('ob/settings/');
   }
 
-  nested() {
+  get nested() {
     return {
       shippingAddresses: ShippingAddresses,
       appearanceSettings: AppearanceSettings,
       transactionSettings: TransactionSettings,
       serverSettings: ServerSettings,
-      smtpIntegrationSettings: SMTPIntegrationSettings
+      smtpIntegrationSettings: SMTPIntegrationSettings,
     };
   }
 
-  parse( response ) {
-    const data = this.fromAPIFormatJSON( response );
-    // make it immutable to highlight unintended modification errors
-    Object.freeze( data );
-    return data;
-  }
+  // parse( response ) {
+  //   const data = this.fromAPIFormatJSON( response );
+  //   // make it immutable to highlight unintended modification errors
+  //   // Object.freeze( data );
+  //   return data;
+  // }
 
-  toModelFormatJSON( ) {
-    return SettingsAPIAdaptor.convertAPIToModelFormat( super.toJSON( ) );
-  }
+  // toModelFormatJSON( ) {
+  //   return SettingsAPIAdaptor.convertAPIToModelFormat( super.toJSON( ) );
+  // }
 
-  toAPIFormatJSON( ) {
-    const raw = super.toJSON( );
-    return SettingsAPIAdaptor.convertModelToAPIFormat( raw );
-  }
+  // toAPIFormatJSON( ) {
+  //   const raw = super.toJSON( );
+  //   return SettingsAPIAdaptor.convertModelToAPIFormat( raw );
+  // }
 
-  toJSON( ) {
-    const apiFormat = this.toAPIFormatJSON( );
-    // make it immutable to highlight unintended modification errors
-    Object.freeze( apiFormat );
-    return apiFormat;
-  }
+  // toJSON( ) {
+  //   const apiFormat = this.toAPIFormatJSON( );
+  //   // make it immutable to highlight unintended modification errors
+  //   Object.freeze( apiFormat );
+  //   return apiFormat;
+  // }
 
-  fromAPIFormatJSON( response ) {
-    return SettingsAPIAdaptor.convertAPIToModelFormat( response );
+  // fromAPIFormatJSON( response ) {
+  //   return SettingsAPIAdaptor.convertAPIToModelFormat( response );
+  // }
+
+  validate() {
+    const errObj = this.mergeInNestedErrors({});
+
+    if (Object.keys(errObj).length) return errObj;
+
+    return undefined;
   }
 
   sync(method, model, options) {

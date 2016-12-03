@@ -15,8 +15,8 @@ export default class extends baseVw {
   }
 
   render( ) {
-    this.settings = app.settings.clone( );
-    const mySettings = this.settings.toModelFormatJSON().appearanceSettings;
+    // this.settings = app.settings.clone( );
+    const mySettings = this.settings.toJSON().appearanceSettings;
 
     if ( mySettings.windowControlStyle == 'mac' )
       app.localSettings.set( { 'macStyleWinControls' : true } );

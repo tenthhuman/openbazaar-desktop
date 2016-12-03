@@ -22,15 +22,15 @@ export default class extends BaseModel {
 
     if (attrs.smtpNotifications) {
       if ( attrs.smtpServerAddress.trim().length == 0 )
-        addError( 'smtpServerAddress', app.polyT( 'smtpIntegrationModelErrors.smtpServerAddress' ) );
+        addError( 'smtpServerAddress', app.polyglot.t( 'smtpIntegrationModelErrors.smtpServerAddress' ) );
       if ( attrs.smtpUserName.trim().length == 0 )
-        addError( 'smtpUserName', app.polyT( 'smtpIntegrationModelErrors.smtpUserName' ) );
+        addError( 'smtpUserName', app.polyglot.t( 'smtpIntegrationModelErrors.smtpUserName' ) );
       if ( attrs.smtpPassword.trim().length == 0 )
-        addError( 'smtpPassword', app.polyT( 'smtpIntegrationModelErrors.smtpPassword' ) );
+        addError( 'smtpPassword', app.polyglot.t( 'smtpIntegrationModelErrors.smtpPassword' ) );
       if ( attrs.smtpFromEmail.trim().length == 0 )
-        addError( 'smtpFromEmail', app.polyT( 'smtpIntegrationModelErrors.smtpFromEmail' ) );
+        addError( 'smtpFromEmail', app.polyglot.t( 'smtpIntegrationModelErrors.smtpFromEmail' ) );
       if ( attrs.smtpToEmail.trim().length == 0 )
-        addError( 'smtpToEmail', app.polyT( 'smtpIntegrationModelErrors.smtpToEmail' ) );
+        addError( 'smtpToEmail', app.polyglot.t( 'smtpIntegrationModelErrors.smtpToEmail' ) );
     }
 
     if (Object.keys(errObj).length) {
